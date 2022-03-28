@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: ConsultationRepository::class)]
+#[ApiResource]
 class Consultation implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
