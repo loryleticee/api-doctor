@@ -27,7 +27,22 @@ security:
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
         medication:
-            pattern:   ^/api/medication
+            pattern:   ^/api/medications
+            stateless: true
+            jwt: ~
+
+        order:
+            pattern:   ^/api/order
+            stateless: true
+            jwt: ~
+
+        consultation:
+            pattern:   ^/api/consultation
+            stateless: true
+            jwt: ~
+
+        patient:
+            pattern:   ^/api/patient
             stateless: true
             jwt: ~
 
@@ -53,6 +68,9 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/medication, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/consultation, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/order, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/patient, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/token/refresh, roles: PUBLIC_ACCESS }
 
 when@test:
