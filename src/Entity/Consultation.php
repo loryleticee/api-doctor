@@ -9,40 +9,47 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: ConsultationRepository::class)]
-#[ApiResource]
+#[ApiResource(normalizationContext: ['groups' => ['read_consultations']], denormalizationContext: ['groups' => ['write_consultations']])]
 class Consultation implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(["read_consultations", "write_consultations"])]
     private $id;
-
+    
     #[ORM\Column(type: 'string', length: 180, unique: false)]
+    #[Groups(["read_consultations", "write_consultations"])]
     private $username = "Doctor";
-
-    #[ORM\Column(type: 'json')]
+    
+    #[ORM\Column(type: 'json')] 
     private $roles = [];
-
+    
     #[ORM\Column(type: 'string')]
     private $password;
-
+    
     #[ORM\Column(type: 'datetime')]
+    #[Groups(["read_consultations", "write_consultations"])]
     private $date;
-
+    
     #[ORM\Column(type: 'string', length: 100)]
+    #[Groups(["read_consultations", "write_consultations"])]
     private $doctor_name = "Doctor";
-
+    
     #[ORM\Column(type: 'string', length: 100)]
+    #[Groups(["read_consultations", "write_consultations"])]
     private $doctor_matricule = "IOUZD5E4FKBHS";
-
+    
     #[ORM\ManyToOne(targetEntity: Patient::class, inversedBy: 'consultations')]
+    #[Groups(["read_consultations", "write_consultations"])]
     private $patient;
-
+    
     #[ORM\OneToMany(mappedBy: 'consultation', targetEntity: Order::class)]
+    #[Groups(["read_consultations", "write_consultations"])]
     private $orders;
 
     public function __construct(UserPasswordHasherInterface $encoder)
