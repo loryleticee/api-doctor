@@ -36,11 +36,6 @@ security:
             stateless: true
             jwt: ~
 
-        api:
-            pattern: ^/api$
-            stateless: true
-            jwt: ~
-
         main:
             lazy: true
             provider: app_user_provider
@@ -59,7 +54,6 @@ security:
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/medication, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/token/refresh, roles: PUBLIC_ACCESS }
-        - { path: ^/api$, roles: PUBLIC_ACCESS }
 
 when@test:
     security:
