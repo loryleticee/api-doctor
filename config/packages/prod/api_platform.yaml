@@ -5,5 +5,5 @@ api_platform:
         json: ['application/merge-patch+json']
     swagger:
         versions: [3]
-    enable_docs: 1
-    enable_entrypoint: 1
+    enable_docs: true
+    enable_entrypoint: true
