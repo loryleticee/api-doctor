@@ -36,8 +36,8 @@ security:
             stateless: true
             jwt: ~
 
-        consultation:
-            pattern:   ^/api/consultation
+        consultations:
+            pattern:   ^/api/consultations
             stateless: true
             jwt: ~
 
@@ -68,7 +68,7 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/medication, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/api/consultation, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/consultations, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/order, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/patient, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/token/refresh, roles: PUBLIC_ACCESS }
