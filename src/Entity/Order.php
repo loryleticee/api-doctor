@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
 #[ApiResource]
+#[ORM\UniqueConstraint(name: "unique_medication_by_prescription", columns: ["medication_id", "consultation_id"])]
 class Order
 {
     #[ORM\Id]

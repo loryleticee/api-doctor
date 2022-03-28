@@ -6,7 +6,9 @@ use App\Repository\ConsultationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: ConsultationRepository::class)]
@@ -18,7 +20,7 @@ class Consultation implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private $username;
+    private $username = "Doctor";
 
     #[ORM\Column(type: 'json')]
     private $roles = [];
@@ -30,10 +32,10 @@ class Consultation implements UserInterface, PasswordAuthenticatedUserInterface
     private $date;
 
     #[ORM\Column(type: 'string', length: 100)]
-    private $doctor_name;
+    private $doctor_name = "Doctor";
 
     #[ORM\Column(type: 'string', length: 100)]
-    private $doctor_matricule;
+    private $doctor_matricule = "IOUZD5E4FKBHS";
 
     #[ORM\ManyToOne(targetEntity: Patient::class, inversedBy: 'consultations')]
     private $patient;
@@ -41,9 +43,10 @@ class Consultation implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'consultation', targetEntity: Order::class)]
     private $orders;
 
-    public function __construct()
+    public function __construct(UserPasswordHasherInterface $encoder)
     {
         $this->orders = new ArrayCollection();
+        $this->password = $encoder->hashPassword($this, "doctor");
     }
 
     public function getId(): ?int
