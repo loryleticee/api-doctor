@@ -5,7 +5,5 @@ api_platform:
         json: ['application/merge-patch+json']
     swagger:
         versions: [3]
-    enable_docs: true
-    enable_entrypoint: true
-    enable_swagger: '%env(bool:ENABLE_API_DOCUMENTATION)%'
-    enable_swagger_ui: '%env(bool:ENABLE_API_DOCUMENTATION)%'
+    enable_docs: 1
+    enable_entrypoint: 1

@@ -7,5 +7,5 @@ api_platform:
         versions: [3]
     enable_docs: true
     enable_entrypoint: true
-    enable_swagger: '%env(bool:ENABLE_API_DOCUMENTATION)%'
-    enable_swagger_ui: '%env(bool:ENABLE_API_DOCUMENTATION)%'
+    enable_swagger: 1
+    enable_swagger_ui: 1
