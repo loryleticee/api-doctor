@@ -7,3 +7,5 @@ api_platform:
         versions: [3]
     enable_docs: true
     enable_entrypoint: true
+    enable_swagger: true
+    enable_swagger_ui: true
