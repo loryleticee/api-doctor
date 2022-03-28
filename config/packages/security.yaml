@@ -34,7 +34,7 @@ security:
         refresh_token:
             pattern: ^/api/token/refresh
             stateless: true
-            jwt: ~
+            refresh_jwt: ~
 
         main:
             lazy: true

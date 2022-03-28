@@ -38,8 +38,18 @@ class Order
         return $this->postlogy;
     }
 
-    public function setPostlogy(?string $postlogy): self
+    public function setPostlogy(?string $postlogy, ?string $monthOrDay): self
     {
+        if ($postlogy && $monthOrDay === "j") {
+            $this->postlogy = $postlogy.'/jrs';
+            return $this;
+        }
+
+        if ($postlogy && $monthOrDay === "m") {
+            $this->postlogy = $postlogy.'/mth';
+            return $this;
+        }
+
         $this->postlogy = $postlogy;
 
         return $this;
